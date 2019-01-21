@@ -158,7 +158,7 @@ function <portlet:namespace/>uploadLocalFile() {
 		<portlet:namespace/>visualizer.loadCanvas( data, true );
 	};
 	
-	<portlet:namespace/>visualizer.uploadLocalFile( 	uploadSuccessFunc );
+	<portlet:namespace/>visualizer.uploadLocalFile( uploadSuccessFunc );
 };
 
 function <portlet:namespace/>downloadCurrentFile() {
@@ -186,62 +186,16 @@ function <portlet:namespace/>saveAtServerAs(content) {
  * Window Event binding functions 
  ***********************************************************************/
 
-$('#<portlet:namespace/>sample').click(function(){
-	if( <portlet:namespace/>disabled )
-		return;
-
-	<portlet:namespace/>visualizer.fireRequestSampleContentEvent();
-});
-
-$('#<portlet:namespace/>openLocalFile').click(function(){
-	if( <portlet:namespace/>disabled )
-		return;
-
-	<portlet:namespace/>visualizer.openLocalFile();
-});
-
-$('#<portlet:namespace/>openServerFile').click(function(){
-	if( <portlet:namespace/>disabled )
-		return;
-
-	<portlet:namespace/>visualizer.openServerFile();
-});
-
-$('#<portlet:namespace/>save').click(function(){
-	if( <portlet:namespace/>disabled )
-		return;
-
-	<portlet:namespace/>visualizer.callIframeFunc('getContent', function( content ){
-		<portlet:namespace/>visualizer.saveAtServer(content);
-	});
-});
-
-$('#<portlet:namespace/>saveAs').click(function(){
-	if( <portlet:namespace/>disabled )
-		return;
-
-	<portlet:namespace/>visualizer.saveAtServerAs();
-});
-
-$('#<portlet:namespace/>saveAtLocal').click(function(){
-	<portlet:namespace/>visualizer.callIframeFunc('getContent', function( content ){
-		<portlet:namespace/>visualizer.saveAtLocal(content, 'text/plain');
-	});
-});
-
-$('#<portlet:namespace/>download').click(function(){
-	<portlet:namespace/>visualizer.downloadCurrentFile();
-});
 
 /***********************************************************************
  * Handling OSP Events and event handlers
  ***********************************************************************/
 function <portlet:namespace/>loadDataEventHandler( data, params ){
 	console.log('[<portlet:namespace/>loadDataEventHandler] ', data );
-	console.log('[<portlet:namespace/>loadDataEventHandler] ', params );
+//	console.log('[<portlet:namespace/>loadDataEventHandler] ', params );
 	
-//	<portlet:namespace/>visualizer.loadCanvas( data, params.changeAlert );
-	<portlet:namespace/>visualizer.loadCanvas( data, false );
+	<portlet:namespace/>visualizer.loadCanvas( data, params.changeAlert );
+//	<portlet:namespace/>visualizer.loadCanvas( data, false );
 }
 
 function <portlet:namespace/>requestDataEventHandler( data, params ){

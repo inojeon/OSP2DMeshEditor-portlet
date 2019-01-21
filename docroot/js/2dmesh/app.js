@@ -4,6 +4,10 @@ function transpose(array) {
 }
 
 function readMeshData(data) {
+  if(data == "") {
+    return -1;
+  }
+
   var datas = data.trim().split(/[\s,="']+/);
 //  var rank = [];
   var lowDatas = data.split('rank')[0];

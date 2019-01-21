@@ -310,7 +310,10 @@
     function getContent (){
       return saveMeshData();
     }
-
+    function disable( flag ){
+    
+    }
+	
 
     function saveMeshData() {
       var rank = meshData.rank;
@@ -372,7 +375,10 @@
     d3.select("#mesh_save").on("click", function() {
       if (d3.select("#mesh_save").attr("disabled") === null ) {
         var function_name = namespace + 'saveAtServer';
-        parent[function_name]( saveMeshData() );
+        var mesh = saveMeshData();
+        parent[function_name]( mesh );
+
+        fireDataChangedEvent( mesh );
       }
     });
 
@@ -459,6 +465,23 @@
     };
 
     saveButtonOff();
+
+	
+	function fireDataChangedEvent( content ){
+		setTimeout(
+				function(){
+					if( namespace ){
+						window.parent[namespace+'fireDataChangedEvent']( content );
+					}
+					else{
+						fireDataChangedEvent( content );
+					}
+				},
+				10
+			);
+	}
+
+
 
   </script>
 </body>
